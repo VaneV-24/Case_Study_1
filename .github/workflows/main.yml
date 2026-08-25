@@ -2,7 +2,7 @@ name: Sync to Hugging Face Hub
 
 on:
   push:
-    branches: [F26]
+    branches: [main]
 
 jobs:
   sync:
