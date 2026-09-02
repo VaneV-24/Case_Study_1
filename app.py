@@ -166,7 +166,7 @@ with gr.Blocks(css=fancy_css) as demo:
         gr.LoginButton()
 
     gr.Markdown(
-        "# 🌟 Effective AI Chatbot",
+        "# 🌟 AI Chatbot",
         elem_id="app-title",
     )
 
