@@ -1,5 +1,5 @@
 ---
-title: DS553 Fall26
+title: Chatbot
 emoji: 💬
 colorFrom: yellow
 colorTo: purple
