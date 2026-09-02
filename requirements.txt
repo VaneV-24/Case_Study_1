@@ -1,2 +1,6 @@
 transformers>=4.56,<5
 accelerate>=1.0
+gradio
+spaces
+huggingface_hub
+transformers
