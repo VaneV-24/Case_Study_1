@@ -14,5 +14,5 @@ jobs:
       - uses: huggingface/hub-sync@v0.1.0
         with:
           github_repo_id: ${{ github.repository }}
-          huggingface_repo_id: rcpaffenroth/DSCS553_WPI_Fall_2026
+          huggingface_repo_id: Vanev/Case_Study_1
           hf_token: ${{ secrets.HF_TOKEN }}
