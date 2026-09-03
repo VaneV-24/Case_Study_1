@@ -143,6 +143,45 @@ cooking_time = gr.Dropdown(
     render=False,
 )
 
+
+chatbot = gr.ChatInterface(
+    fn=respond,
+    additional_inputs=[
+        cooking_time,
+        gr.Textbox(
+            value="You are a friendly Chatbot.",
+            label="System message",
+        ),
+        gr.Slider(
+            minimum=1,
+            maximum=2048,
+            value=512,
+            step=1,
+            label="Max new tokens",
+        ),
+        gr.Slider(
+            minimum=0.1,
+            maximum=2.0,
+            value=0.7,
+            step=0.1,
+            label="Temperature",
+        ),
+        gr.Slider(
+            minimum=0.1,
+            maximum=1.0,
+            value=0.95,
+            step=0.05,
+            label="Top-p (nucleus sampling)",
+        ),
+        gr.Checkbox(
+            label="Use Local Model",
+            value=False,
+        ),
+    ],
+    render = False, #getting a rendering error, this might work
+)
+
+
 with gr.Blocks(css=fancy_css) as demo:
     with gr.Sidebar():
         gr.LoginButton()
@@ -153,53 +192,19 @@ with gr.Blocks(css=fancy_css) as demo:
     )
 
     gr.Markdown(
-        "**Don't know what to make for dinner? Plan your meals with our chatbot.**",
+        "**Don't know what to make for dinner?  Plan your meals with our chatbot.**",
         elem_id="app-subtitle",
     )
 
     with gr.Column(elem_id="chat-container"):
         cooking_time.render()
-
-        chatbot = gr.ChatInterface(
-            fn=respond,
-            additional_inputs=[
-                cooking_time,
-                gr.Textbox(
-                    value="You are a friendly Chatbot.",
-                    label="System message",
-                ),
-                gr.Slider(
-                    minimum=1,
-                    maximum=2048,
-                    value=512,
-                    step=1,
-                    label="Max new tokens",
-                ),
-                gr.Slider(
-                    minimum=0.1,
-                    maximum=2.0,
-                    value=0.7,
-                    step=0.1,
-                    label="Temperature",
-                ),
-                gr.Slider(
-                    minimum=0.1,
-                    maximum=1.0,
-                    value=0.95,
-                    step=0.05,
-                    label="Top-p (nucleus sampling)",
-                ),
-                gr.Checkbox(
-                    label="Use Local Model",
-                    value=False,
-                ),
-            ],
-        )
+        chatbot.render()
 
         gr.Markdown(
             "Use **Additional inputs** to switch between the API model and the locally executed model.",
             elem_id="model-note",
         )
+
 
 if __name__ == "__main__":
     demo.launch(allowed_paths=["cute_kitchen_background.png"])
