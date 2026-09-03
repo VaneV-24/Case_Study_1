@@ -27,7 +27,6 @@ fancy_css = """
     text-align: center;
     color: var(--body-text-color-subdued);
     margin-bottom: 24px;
-    font-weight: bold;
 }
 #chat-container {
     width: 100%;
@@ -173,7 +172,7 @@ with gr.Blocks(css=fancy_css) as demo:
     )
 
     gr.Markdown(
-        "Don't know what to make for dinner?  Plan your meals with our chatbot.",
+        "**Don't know what to make for dinner?  Plan your meals with our chatbot.**",
         elem_id="app-subtitle",
     )
 
