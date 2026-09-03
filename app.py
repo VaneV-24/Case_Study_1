@@ -27,6 +27,7 @@ fancy_css = """
     text-align: center;
     color: var(--body-text-color-subdued);
     margin-bottom: 24px;
+    font-weight: bold;
 }
 #chat-container {
     width: 100%;
