@@ -178,7 +178,6 @@ chatbot = gr.ChatInterface(
             value=False,
         ),
     ],
-    render = False, #getting a rendering error, this might work
 )
 
 
