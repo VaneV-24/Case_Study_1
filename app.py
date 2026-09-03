@@ -17,6 +17,7 @@ fancy_css = """
 .gradio-container {
     width: 96% !important;
     max-width: none !important;
+    background: url("/gradio_api/file=cute_kitchen_background.png") center / cover fixed !important;
 }
 #app-title {
     text-align: center;
@@ -185,4 +186,4 @@ with gr.Blocks(css=fancy_css) as demo:
 
 
 if __name__ == "__main__":
-    demo.launch()
+    demo.launch(allowed_paths=["cute_kitchen_background.png"])
