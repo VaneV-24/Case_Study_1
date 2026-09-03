@@ -167,12 +167,12 @@ with gr.Blocks(css=fancy_css) as demo:
         gr.LoginButton()
 
     gr.Markdown(
-        "# 🌟 AI Chatbot",
+        "# 🍽️ What's for Dinner?",
         elem_id="app-title",
     )
 
     gr.Markdown(
-        "A fancier version of the standard Huggging Face chatbot template.",
+        "Don't know what to make for dinner?  Plan your meals with our chatbot.",
         elem_id="app-subtitle",
     )
 
