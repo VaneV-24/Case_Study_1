@@ -72,7 +72,6 @@ def local_generate(
 def respond(
     message,
     history: list[dict[str, str]],
-    cooking_time,
     system_message,
     max_tokens,
     temperature,
@@ -82,16 +81,7 @@ def respond(
 ):
     messages = [{"role": "system", "content": system_message}]
     messages.extend(history)
-    messages.append(
-        {
-            "role": "user",
-            "content": (
-                f"{message}\n\n"
-                f"The user has {cooking_time} available for cooking. "
-                "Only suggest meals that can be completed within that time."
-            ),
-        }
-    )
+    messages.append({"role": "user", "content": message})
 
     if use_local_model:
         print("[MODE] local")
@@ -136,18 +126,9 @@ def respond(
         yield response
 
 
-cooking_time = gr.Dropdown(
-    choices=["15 minutes", "30 minutes", "45 minutes", "1 hour"],
-    value="30 minutes",
-    label="How much time do you have available for cooking?",
-    render=False,
-)
-
-
 chatbot = gr.ChatInterface(
     fn=respond,
     additional_inputs=[
-        cooking_time,
         gr.Textbox(
             value="You are a friendly Chatbot.",
             label="System message",
@@ -196,7 +177,6 @@ with gr.Blocks(css=fancy_css) as demo:
     )
 
     with gr.Column(elem_id="chat-container"):
-        cooking_time.render()
         chatbot.render()
 
         gr.Markdown(
