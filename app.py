@@ -74,6 +74,7 @@ def respond(
     history: list[dict[str, str]],
     system_message,
     time_required,
+    pantry_staples,
     max_tokens,
     temperature,
     top_p,
@@ -82,10 +83,15 @@ def respond(
 ):
     messages = [{"role": "system", "content": system_message}]
     messages.extend(history)
+    pantry_text = ", ".join(pantry_staples) if pantry_staples else "None selected"
     messages.append(
     {
         "role": "user",
-        "content": f"{message}\n\nTime Required: {time_required}",
+        "content": (
+            f"{message}\n\n"
+            f"Time Required: {time_required}\n"
+            f"Pantry Staples Available: {pantry_text}"
+        ),
     }
 )
 
@@ -153,8 +159,24 @@ with gr.Blocks(css=fancy_css) as demo:
         elem_id="time-required",
     )
 
+    pantry_staples = gr.CheckboxGroup(
+    choices=[
+        "Salt",
+        "Pepper",
+        "Olive Oil",
+        "Butter",
+        "Garlic",
+        "Onions",
+        "Peppers",
+        "Rice",
+        "Pasta",
+        "Eggs",
+    ],
+    label="Which Pantry Staples Do You Have?",
+    elem_id="pantry-staples",
+)
     system_message = gr.Textbox(
-        value="You are a recipe assistant Chatbot. Use the user's input ingredients and cooking time to suggest different recipes.",
+        value="You are a recipe assistant Chatbot. Use the user's input ingredients, checked pantry staples, and cooking time to suggest different recipes.",
         label="System message",
         render=False,
     )
@@ -194,6 +216,7 @@ with gr.Blocks(css=fancy_css) as demo:
             additional_inputs=[
                 system_message,
                 time_required,
+                pantry_staples,
                 max_tokens,
                 temperature,
                 top_p,
