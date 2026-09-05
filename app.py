@@ -73,6 +73,7 @@ def respond(
     message,
     history: list[dict[str, str]],
     system_message,
+    time_required,
     max_tokens,
     temperature,
     top_p,
@@ -81,7 +82,12 @@ def respond(
 ):
     messages = [{"role": "system", "content": system_message}]
     messages.extend(history)
-    messages.append({"role": "user", "content": message})
+    messages.append(
+    {
+        "role": "user",
+        "content": f"{message}\n\nTime Required: {time_required}",
+    }
+)
 
     if use_local_model:
         print("[MODE] local")
@@ -126,48 +132,12 @@ def respond(
         yield response
 
 
-chatbot = gr.ChatInterface(
-    fn=respond,
-    additional_inputs=[
-        gr.Textbox(
-            value="You are a friendly Chatbot.",
-            label="System message",
-        ),
-        gr.Slider(
-            minimum=1,
-            maximum=2048,
-            value=512,
-            step=1,
-            label="Max new tokens",
-        ),
-        gr.Slider(
-            minimum=0.1,
-            maximum=2.0,
-            value=0.7,
-            step=0.1,
-            label="Temperature",
-        ),
-        gr.Slider(
-            minimum=0.1,
-            maximum=1.0,
-            value=0.95,
-            step=0.05,
-            label="Top-p (nucleus sampling)",
-        ),
-        gr.Checkbox(
-            label="Use Local Model",
-            value=False,
-        ),
-    ],
-)
-
-
 with gr.Blocks(css=fancy_css) as demo:
     with gr.Sidebar():
         gr.LoginButton()
 
     gr.Markdown(
-        "# 🍽️ What's for Dinner?",
+        "# 🍽️ What's For Dinner?",
         elem_id="app-title",
     )
 
@@ -176,14 +146,65 @@ with gr.Blocks(css=fancy_css) as demo:
         elem_id="app-subtitle",
     )
 
+    time_required = gr.Dropdown(
+        choices=["20 minutes", "30 minutes", "1 hour", "2 hours"],
+        value=None,
+        label="🕒 Time Required",
+        elem_id="time-required",
+    )
+
+    system_message = gr.Textbox(
+        value="You are a recipe assistant Chatbot. Use the user's input ingredients and cooking time to suggest different recipes.",
+        label="System message",
+        render=False,
+    )
+    max_tokens = gr.Slider(
+        minimum=1,
+        maximum=2048,
+        value=512,
+        step=1,
+        label="Max new tokens",
+        render=False,
+    )
+    temperature = gr.Slider(
+        minimum=0.1,
+        maximum=2.0,
+        value=0.7,
+        step=0.1,
+        label="Temperature",
+        render=False,
+    )
+    top_p = gr.Slider(
+        minimum=0.1,
+        maximum=1.0,
+        value=0.95,
+        step=0.05,
+        label="Top-p (nucleus sampling)",
+        render=False,
+    )
+    use_local_model = gr.Checkbox(
+        label="Use Local Model",
+        value=False,
+        render=False,
+    )
+
     with gr.Column(elem_id="chat-container"):
-        chatbot.render()
+        chatbot = gr.ChatInterface(
+            fn=respond,
+            additional_inputs=[
+                system_message,
+                time_required,
+                max_tokens,
+                temperature,
+                top_p,
+                use_local_model,
+            ],
+        )
 
         gr.Markdown(
             "Use **Additional inputs** to switch between the API model and the locally executed model.",
             elem_id="model-note",
         )
-
 
 if __name__ == "__main__":
     demo.launch(allowed_paths=["cute_kitchen_background.png"])
