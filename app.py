@@ -142,14 +142,14 @@ with gr.Blocks(css=fancy_css) as demo:
     )
 
     gr.Markdown(
-        "**Don't know what to make for dinner?  Plan your meals with our chatbot.**",
+        "**Don't know what to make for dinner?  Plan your meals with our chatbot. Select the time you have and input your ingredients or special requests.**",
         elem_id="app-subtitle",
     )
 
     time_required = gr.Dropdown(
         choices=["20 minutes", "30 minutes", "1 hour", "2 hours"],
         value=None,
-        label="🕒 Time Required",
+        label="**🕒 How Much Time Do You Have?**",
         elem_id="time-required",
     )
 
