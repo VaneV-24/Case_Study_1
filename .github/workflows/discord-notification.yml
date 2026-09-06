@@ -1,0 +1,19 @@
+name: Custom Discord Notification
+
+on:
+    push:
+        branches: [main]
+
+jobs:
+    notify:
+        runs-on: ubuntu-latest
+
+        steps:
+            - name: Send Custom Discord Notification
+              env:
+                  DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
+              run: |
+                **New Commit Pushed to Main Branch**
+                Repository: ${{ github.repository }}
+                Commit Message: ${{ github.event.head_commit.message }}
+                Commit URL: ${{ github.event.head_commit.url }}
