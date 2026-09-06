@@ -1,5 +1,5 @@
 ---
-title: Chatbot
+title: Recipe Chatbot
 emoji: 💬
 colorFrom: yellow
 colorTo: purple
