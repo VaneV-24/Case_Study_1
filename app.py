@@ -3,7 +3,7 @@ import spaces
 from huggingface_hub import InferenceClient
 from transformers import pipeline
 
-LOCAL_MODEL = "Qwen/Qwen3-0.6B"
+LOCAL_MODEL = "Qwen/Qwen2.5-0.5B-Instruct"
 REMOTE_MODEL = "openai/gpt-oss-20b"
 
 pipe = pipeline(
