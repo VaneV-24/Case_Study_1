@@ -26,7 +26,7 @@ fancy_css = """
 #app-subtitle {
     text-align: center;
     color: black;
-    background_color: #f3e5cf;
+    background-color: #f3e5cf;
     padding: 8px;
     border-radius: 8px;
     margin-bottom: 24px;
