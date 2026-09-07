@@ -25,7 +25,10 @@ fancy_css = """
 }
 #app-subtitle {
     text-align: center;
-    color: var(--body-text-color-subdued);
+    color: black;
+    background_color: #f3e5cf;
+    padding: 8px;
+    border-radius: 8px;
     margin-bottom: 24px;
 }
 #chat-container {
@@ -37,7 +40,7 @@ fancy_css = """
 }
 #model-note {
     font-size: 0.9em;
-    color: var(--body-text-color-subdued);
+    color: black;
     margin-top: 8px;
 }
 @media (max-width: 768px) {
@@ -225,7 +228,7 @@ with gr.Blocks(css=fancy_css) as demo:
         )
 
         gr.Markdown(
-            "Use **Additional inputs** to switch between the API model and the locally executed model.",
+            "**Use Additional inputs to switch between the API model and the locally executed model.**",
             elem_id="model-note",
         )
 
