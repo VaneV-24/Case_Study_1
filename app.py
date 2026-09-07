@@ -21,6 +21,9 @@ fancy_css = """
 }
 #app-title {
     text-align: center;
+    background-color: #f3e5cf;
+    padding: 8px;
+    border-radius: 8px;
     margin-bottom: 4px;
 }
 #app-subtitle {
@@ -31,6 +34,10 @@ fancy_css = """
     border-radius: 8px;
     margin-bottom: 24px;
 }
+#time-required {
+    color: black;}
+#pantry-staples {
+    color: black;}
 #chat-container {
     width: 100%;
     border: 1px solid var(--border-color-primary);
