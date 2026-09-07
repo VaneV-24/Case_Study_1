@@ -35,9 +35,9 @@ fancy_css = """
     margin-bottom: 24px;
 }
 #time-required {
-    color: black;}
+    color: black !important;}
 #pantry-staples {
-    color: black;}
+    color: black !important;}
 #chat-container {
     width: 100%;
     border: 1px solid var(--border-color-primary);
