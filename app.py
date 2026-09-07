@@ -176,7 +176,7 @@ with gr.Blocks(css=fancy_css) as demo:
     elem_id="pantry-staples",
 )
     system_message = gr.Textbox(
-        value="You are a recipe assistant Chatbot. Use the user's input ingredients, checked pantry staples, and cooking time to suggest 1-2 recipes that can be made within the amount of time specified. If you suggest ingredients that the user does not explictly have, list these as optional.",
+        value="You are a recipe assistant Chatbot. Use the user's input ingredients, checked pantry staples, and cooking time to suggest 1 recipe that can be made within the amount of time specified. If you suggest ingredients that the user does not explictly have, list these as optional.",
         label="System message",
         render=False,
     )
