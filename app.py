@@ -4,7 +4,7 @@ from huggingface_hub import InferenceClient
 from transformers import pipeline
 
 LOCAL_MODEL = "Qwen/Qwen2.5-0.5B-Instruct"
-REMOTE_MODEL = "openai/gpt-oss-20b"
+REMOTE_MODEL = "meta-llama/Llama-3.1-8B-Instruct"
 
 pipe = pipeline(
     "text-generation",
@@ -155,7 +155,7 @@ with gr.Blocks(css=fancy_css) as demo:
     time_required = gr.Dropdown(
         choices=["20 minutes", "30 minutes", "1 hour", "2 hours"],
         value=None,
-        label="**🕒 How Much Time Do You Have?**",
+        label="How Much Time Do You Have?",
         elem_id="time-required",
     )
 
