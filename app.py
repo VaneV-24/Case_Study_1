@@ -19,43 +19,21 @@ fancy_css = """
     max-width: none !important;
     background: url("/gradio_api/file=cute_kitchen_background.png") center / cover fixed !important;
 }
-#app-title {
-    text-align: center;
-    background-color: #f3e5cf;
-    padding: 8px;
-    border-radius: 8px;
-    margin-bottom: 4px;
+#app-title,
+#app-subtitle,
+#model-note {
+    background: var(--block-background-fill);
+    color: var(--body-text-color);
+    padding: var(--block-padding);
+    border-radius: var(--block-radius);
 }
+#app-title,
 #app-subtitle {
     text-align: center;
-    color: black;
-    background-color: #f3e5cf;
-    padding: 8px;
-    border-radius: 8px;
-    margin-bottom: 24px;
-}
-#time-required {
-    color: black !important;}
-#pantry-staples {
-    color: black !important;}
-#chat-container {
-    width: 100%;
-    border: 1px solid var(--border-color-primary);
-    border-radius: 12px;
-    padding: 16px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
-}
-#model-note {
-    font-size: 0.9em;
-    color: black;
-    margin-top: 8px;
 }
 @media (max-width: 768px) {
     .gradio-container {
         width: 98% !important;
-    }
-    #chat-container {
-        padding: 8px;
     }
 }
 """
@@ -148,7 +126,7 @@ def respond(
         yield response
 
 
-with gr.Blocks(css=fancy_css) as demo:
+with gr.Blocks() as demo:
     with gr.Sidebar():
         gr.LoginButton()
 
@@ -240,4 +218,8 @@ with gr.Blocks(css=fancy_css) as demo:
         )
 
 if __name__ == "__main__":
-    demo.launch(allowed_paths=["cute_kitchen_background.png"])
+    demo.launch(
+        theme=gr.themes.Soft(),
+        css=fancy_css,
+        allowed_paths=["cute_kitchen_background.png"],
+    )
