@@ -165,7 +165,6 @@ with gr.Blocks() as demo:
         "Cheese",
         "Tomatoes",
         "Bread",
-        "Soy Sauce",
         "Vinegar"
     ],
     label="Which Pantry Staples Do You Have?",
