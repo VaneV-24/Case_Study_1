@@ -1,7 +1,7 @@
 ---
 title: Recipe Chatbot
 emoji: 💬
-colorFrom: yellow
+colorFrom: red
 colorTo: purple
 sdk: gradio
 sdk_version: 6.5.1
