@@ -6,6 +6,10 @@ from transformers import pipeline
 LOCAL_MODEL = "Qwen/Qwen2.5-0.5B-Instruct"
 REMOTE_MODEL = "meta-llama/Llama-3.1-8B-Instruct"
 
+max_tokens = 900
+temperature = 0.7
+top_p = 0.95
+
 pipe = pipeline(
     "text-generation",
     model=LOCAL_MODEL,
@@ -63,9 +67,6 @@ def respond(
     system_message,
     time_required,
     pantry_staples,
-    max_tokens,
-    temperature,
-    top_p,
     use_local_model,
     hf_token: gr.OAuthToken,
 ):
@@ -175,30 +176,6 @@ with gr.Blocks() as demo:
         label="System message",
         render=False,
     )
-    max_tokens = gr.Slider(
-        minimum=500,
-        maximum=2048,
-        value=900,
-        step=1,
-        label="Max new tokens",
-        render=False,
-    )
-    temperature = gr.Slider(
-        minimum=0.1,
-        maximum=2.0,
-        value=0.7,
-        step=0.1,
-        label="Temperature",
-        render=False,
-    )
-    top_p = gr.Slider(
-        minimum=0.1,
-        maximum=1.0,
-        value=0.95,
-        step=0.05,
-        label="Top-p (nucleus sampling)",
-        render=False,
-    )
     use_local_model = gr.Checkbox(
         label="Use Local Model",
         value=False,
@@ -212,9 +189,6 @@ with gr.Blocks() as demo:
                 system_message,
                 time_required,
                 pantry_staples,
-                max_tokens,
-                temperature,
-                top_p,
                 use_local_model,
             ],
         )
